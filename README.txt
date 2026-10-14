@@ -18,3 +18,5 @@ WebGuardian Demo — তিন ফাইলের ওয়েবসাইট স�
 - Google Fonts থাকলে অনলাইনে ফন্ট লোড হতে পারে; নেট না থাকলেও system fallback দিয়ে সাইট চলবে।
 - এই ডেমোতে ChatGPT/OpenAI API Key লাগে না।
 - production-এর জন্য server/API scan engine, request validation, rate limiting এবং নিরাপদ API key storage যোগ করতে হবে।
+
+Live Link:  https://mahmuddemowebsite.github.io/WebGuardian_Demo/
