@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10182c">
+  <title>WebGuardian — ওয়েবসাইট স্বাস্থ্য পরীক্ষা</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#top" aria-label="WebGuardian হোম">
+        <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3.5 33 8v10.3c0 8.2-5.3 14.1-13 18.2C12.3 32.4 7 26.5 7 18.3V8L20 3.5Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="m13.3 20.3 4.4 4.2 9.2-10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8"/></svg></span>
+        <span class="brand-copy"><strong>WebGuardian</strong><small>ওয়েবসাইট হেলথ চেক</small></span>
+      </a>
+      <div class="sidebar-label">ওয়ার্কস্পেস</div>
+      <nav class="side-nav" aria-label="প্রধান মেনু">
+        <button class="nav-item active" data-nav="dashboard"><span class="nav-icon">▦</span><span>ড্যাশবোর্ড</span></button>
+        <button class="nav-item" data-nav="html-check"><span class="nav-icon">⌘</span><span>HTML পরীক্ষা</span><span class="nav-tag">নতুন</span></button>
+        <button class="nav-item" data-nav="history"><span class="nav-icon">◷</span><span>স্ক্যান ইতিহাস</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">✦</div>
+          <strong>একটি বিষয় মনে রাখুন</strong>
+          <p>ডেমো স্ক্যানের ফল নমুনা। HTML পরীক্ষার ফল আপনার দেওয়া কোড থেকে তৈরি হয়।</p>
+        </div>
+        <div class="sidebar-foot"><span class="status-dot"></span> ডেমো সংস্করণ <span class="version">v1.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="top">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="মেনু খুলুন">☰</button>
+        <div class="breadcrumb">ওয়ার্কস্পেস <span>/</span> <strong id="breadcrumbCurrent">ড্যাশবোর্ড</strong></div>
+        <div class="topbar-right"><span class="demo-badge"><span></span> ডেমো মোড</span><div class="avatar" aria-label="ব্যবহারকারী">WG</div></div>
+      </header>
+
+      <section class="page-section" id="dashboardSection">
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> ওয়েবসাইট কোয়ালিটি অডিট</div>
+            <h1>আপনার ওয়েবসাইট কতটা <span>সুস্থ?</span></h1>
+            <p class="page-subtitle">সমস্যা খুঁজুন, ঝুঁকি বুঝুন, আর ওয়েবসাইট আরও ভালো করার পরবর্তী পদক্ষেপ জানুন।</p>
+          </div>
+          <div class="date-chip"><span>◷</span> <span id="todayLabel">আজকের প্রতিবেদন</span></div>
+        </div>
+
+        <section class="scan-card" aria-labelledby="scanHeading">
+          <div class="scan-card-top">
+            <div class="scan-symbol"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5M8 10.8h5.6M10.8 8v5.6"/></svg></div>
+            <div class="scan-copy"><h2 id="scanHeading">আপনার ওয়েবসাইট পরীক্ষা শুরু করুন</h2><p>একটি URL দিয়ে নমুনা রিপোর্ট দেখুন, অথবা নিজের HTML কোড পরীক্ষা করুন।</p></div>
+            <span class="scan-chip"><span class="pulse"></span> প্রস্তুত</span>
+          </div>
+          <form id="urlForm" class="url-form">
+            <label for="siteUrl" class="visually-hidden">ওয়েবসাইটের URL</label>
+            <span class="url-prefix">↗</span>
+            <input id="siteUrl" type="url" inputmode="url" value="https://example.com" placeholder="https://yourwebsite.com" autocomplete="url">
+            <button type="submit" class="primary-button" id="demoScanBtn"><span>◉</span> ডেমো স্ক্যান চালান <span class="button-arrow">→</span></button>
+          </form>
+          <div class="scan-card-bottom"><span class="info-mini">ⓘ</span><span>ডেমো স্ক্যান বাস্তব URL থেকে তথ্য সংগ্রহ করে না। লাইভ স্ক্যান যুক্ত করতে API বা ব্যাকএন্ড প্রয়োজন।</span><button class="text-button" id="openHtmlEditor">নিজের HTML পরীক্ষা করুন <span>↗</span></button></div>
+          <div class="progress-wrap" id="progressWrap" hidden><div class="progress-top"><span id="progressText">রিপোর্ট তৈরি হচ্ছে...</span><span id="progressPercent">0%</span></div><div class="progress-track"><span id="progressBar"></span></div></div>
+        </section>
+
+        <div class="section-heading"><div><h2>স্বাস্থ্য প্রতিবেদন</h2><p id="reportCaption">নমুনা ওয়েবসাইটের জন্য একটি উদাহরণ প্রতিবেদন</p></div><div class="report-actions"><button class="outline-button" id="copyReportBtn">▢ <span>সারাংশ কপি</span></button><button class="outline-button" id="downloadReportBtn">↓ <span>রিপোর্ট ডাউনলোড</span></button></div></div>
+        <div class="notice-banner" id="demoNotice"><span class="notice-icon">!</span><div><strong>এটি নমুনা প্রতিবেদন</strong><p>নিচের স্কোর ও সমস্যাগুলো শুধু ডেমো দেখানোর জন্য। এগুলো <span id="noticeUrl">example.com</span>-এর বাস্তব পরীক্ষার ফল নয়।</p></div><button id="dismissNotice" aria-label="বার্তাটি বন্ধ করুন">×</button></div>
+
+        <section class="metrics-grid" aria-label="স্বাস্থ্য স্কোর">
+          <article class="metric-card score-card">
+            <div class="metric-top"><span class="metric-label">সামগ্রিক স্বাস্থ্য স্কোর</span><span class="metric-icon purple">✳</span></div>
+            <div class="score-layout"><div class="score-ring" id="scoreRing" style="--score:78"><div><strong id="overallScore">78</strong><small>/ 100</small></div></div><div class="score-description"><span class="score-state" id="overallState">আরও উন্নতি প্রয়োজন</span><p id="scoreDescription">কিছু গুরুত্বপূর্ণ বিষয় ঠিক করলে স্কোর বাড়বে।</p><span class="score-trend">↗ <b>উন্নতির সুযোগ আছে</b></span></div></div>
+            <div class="metric-foot"><span>পরীক্ষার ধরন</span><strong id="reportType">নমুনা ডেটা</strong></div>
+          </article>
+          <article class="metric-card"><div class="metric-top"><span class="metric-label">সমস্যা পাওয়া গেছে</span><span class="metric-icon red">!</span></div><div class="metric-value"><strong id="issueCount">3</strong><span class="metric-unit">টি বিষয়</span></div><p class="metric-description">যেগুলো আগে ঠিক করা ভালো</p><div class="mini-bars"><span class="bar-red" style="height:78%"></span><span class="bar-red" style="height:56%"></span><span class="bar-orange" style="height:66%"></span><span class="bar-gray" style="height:28%"></span><span class="bar-gray" style="height:44%"></span><span class="bar-gray" style="height:22%"></span><span class="bar-gray" style="height:35%"></span><span class="bar-gray" style="height:18%"></span></div><div class="metric-foot"><span>গুরুত্বপূর্ণ</span><strong class="red-text" id="criticalCount">1</strong></div></article>
+          <article class="metric-card"><div class="metric-top"><span class="metric-label">সতর্কতা</span><span class="metric-icon orange">⚑</span></div><div class="metric-value"><strong id="warningCount">4</strong><span class="metric-unit">টি বিষয়</span></div><p class="metric-description">আরও পরীক্ষা বা উন্নতি দরকার</p><div class="warning-track"><span id="warningTrack" style="width:62%"></span></div><div class="metric-foot"><span>উন্নতির ক্ষেত্র</span><strong class="orange-text">পর্যালোচনা করুন</strong></div></article>
+          <article class="metric-card"><div class="metric-top"><span class="metric-label">পরীক্ষায় উত্তীর্ণ</span><span class="metric-icon green">✓</span></div><div class="metric-value"><strong id="passedCount">12</strong><span class="metric-unit">টি পরীক্ষা</span></div><p class="metric-description">যেসব বিষয় ঠিক পাওয়া গেছে</p><div class="pass-dots" id="passDots" aria-hidden="true"></div><div class="metric-foot"><span>সফল চেক</span><strong class="green-text" id="passPercent">63%</strong></div></article>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel issues-panel">
+            <div class="panel-heading"><div><h2>যে বিষয়গুলো দেখা দরকার</h2><p>সমস্যায় চাপ দিন বিস্তারিত ও সমাধান দেখতে</p></div><button class="icon-button" id="refreshIssues" title="রিপোর্ট দেখুন">↻</button></div>
+            <div class="filter-row" role="group" aria-label="সমস্যা ফিল্টার"><button class="filter-btn selected" data-filter="all">সব <span id="allFilterCount">7</span></button><button class="filter-btn" data-filter="critical">গুরুত্বপূর্ণ <span id="criticalFilterCount">1</span></button><button class="filter-btn" data-filter="warning">সতর্কতা <span id="warningFilterCount">4</span></button><button class="filter-btn" data-filter="passed">উত্তীর্ণ <span id="passedFilterCount">12</span></button></div>
+            <div class="issue-list" id="issueList"></div>
+            <div class="empty-state" id="emptyIssues" hidden><span>✓</span><strong>এই বিভাগে কোনো বিষয় নেই</strong><p>অন্য ফিল্টার নির্বাচন করুন।</p></div>
+            <button class="view-all-button" id="showAllIssues">সব পরীক্ষার ফল দেখুন <span>→</span></button>
+          </article>
+
+          <aside class="panel breakdown-panel">
+            <div class="panel-heading"><div><h2>ক্যাটাগরি অনুযায়ী স্কোর</h2><p>প্রতিটি অংশের অবস্থা</p></div><span class="subtle-icon">◉</span></div>
+            <div class="category-list" id="categoryList"></div>
+            <div class="breakdown-note"><span>✦</span><div><strong>পরামর্শ</strong><p id="tipText">মোবাইলে কেমন দেখায় তা পরীক্ষা করুন এবং ছবির alt text যোগ করুন।</p></div></div>
+          </aside>
+        </section>
+
+        <section class="bottom-grid">
+          <article class="panel next-steps-panel"><div class="panel-heading"><div><h2>পরবর্তী করণীয়</h2><p>উন্নতির জন্য সহজ কিছু পদক্ষেপ</p></div><span class="step-count">৩টি ধাপ</span></div><div class="steps-list" id="stepsList"></div></article>
+          <article class="panel report-info-panel"><div class="report-info-icon">✧</div><h2>প্রতিবেদন সংরক্ষণ করুন</h2><p>রিপোর্ট ডাউনলোড করে টিম বা ক্লায়েন্টের সঙ্গে শেয়ার করুন।</p><div class="report-meta"><span>রিপোর্ট আইডি</span><strong id="reportId">WG-DEMO-001</strong></div><div class="report-meta"><span>রিপোর্টের ধরন</span><strong id="reportMetaType">নমুনা</strong></div><button class="primary-button full-button" id="printReportBtn">↗ প্রতিবেদন প্রিন্ট / PDF</button></article>
+        </section>
+        <footer class="page-footer"><span>© 2026 WebGuardian</span><span><i></i> আপনার ওয়েবসাইট, আরও ভালোভাবে</span><span>ডেমো সংস্করণ · AI API প্রয়োজন নেই</span></footer>
+      </section>
+
+      <section class="page-section editor-section" id="editorSection" hidden>
+        <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> কোড-ভিত্তিক পরীক্ষা</div><h1>আপনার HTML কোড <span>পরীক্ষা করুন</span></h1><p class="page-subtitle">নিজের HTML পেস্ট করুন। ব্রাউজারেই কয়েকটি সাধারণ গঠনগত ও অ্যাক্সেসিবিলিটি চেক হবে।</p></div><button class="outline-button back-dashboard" id="backDashboard">← ড্যাশবোর্ডে ফিরুন</button></div>
+        <div class="editor-info"><span class="editor-info-icon">ⓘ</span><div><strong>এই পরীক্ষাটি কী করবে?</strong><p>টাইটেল, মেটা বর্ণনা, H1, ছবির alt text, ফর্ম লেবেল, viewport, lang attribute ও লিংকের মতো বিষয় পরীক্ষা করবে। এটি আপনার কোড সার্ভারে পাঠায় না এবং জাভাস্ক্রিপ্ট চালায় না।</p></div></div>
+        <div class="editor-layout"><section class="panel code-panel"><div class="code-panel-top"><div><span class="file-dot"></span><strong>index.html</strong><span class="code-hint">HTML কোড</span></div><div class="code-tools"><button class="text-button" id="loadSampleCode">নমুনা কোড লোড করুন</button><button class="text-button" id="clearCode">মুছুন</button></div></div><label for="htmlInput" class="visually-hidden">HTML কোড লিখুন বা পেস্ট করুন</label><textarea id="htmlInput" spellcheck="false" placeholder="<!doctype html>&#10;<html lang=&quot;bn&quot;>&#10;  <head> ..."></textarea><div class="code-panel-bottom"><span id="charCount">0 অক্ষর</span><span>স্থানীয় বিশ্লেষণ · নিরাপদে ব্রাউজারেই</span></div><button class="primary-button analyze-button" id="analyzeHtmlBtn"><span>⌕</span> HTML পরীক্ষা করুন <span class="button-arrow">→</span></button></section>
+          <aside class="panel editor-guide"><div class="guide-icon">⌘</div><h2>ভালো ফল পেতে</h2><div class="guide-tip"><span>01</span><div><strong>সম্পূর্ণ HTML দিন</strong><p>DOCTYPE থেকে closing html tag পর্যন্ত কোড পেস্ট করুন।</p></div></div><div class="guide-tip"><span>02</span><div><strong>সমস্যার বিস্তারিত দেখুন</strong><p>প্রতিটি ফলাফলে কেন দরকার ও কীভাবে ঠিক করবেন তা পাবেন।</p></div></div><div class="guide-tip"><span>03</span><div><strong>রিপোর্ট সংরক্ষণ করুন</strong><p>ফলাফল ড্যাশবোর্ডে দেখুন বা JSON রিপোর্ট ডাউনলোড করুন।</p></div></div><div class="guide-warning">⚠ শুধু HTML থেকে ওয়েবসাইটের প্রকৃত গতি, সার্ভার, নিরাপত্তা বা সব JavaScript interaction যাচাই করা সম্ভব নয়।</div></aside></div>
+        <div class="editor-results" id="editorResults" hidden><div class="section-heading"><div><h2>HTML পরীক্ষার ফল</h2><p id="htmlResultsCaption">আপনার দেওয়া কোডের ভিত্তিতে</p></div><button class="outline-button" id="downloadHtmlReport">↓ রিপোর্ট ডাউনলোড</button></div><div class="html-score-row"><div class="html-score"><strong id="htmlScoreValue">—</strong><span>HTML গুণমান স্কোর</span></div><div class="html-score-summary"><strong id="htmlScoreHeading">পরীক্ষা সম্পন্ন</strong><p id="htmlScoreDescription">ফলাফল নিচে দেওয়া হলো।</p><div class="html-result-pills" id="htmlResultPills"></div></div></div><div class="html-findings" id="htmlFindings"></div></div>
+      </section>
+
+      <section class="page-section history-section" id="historySection" hidden><div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> আপনার কার্যক্রম</div><h1>স্ক্যান <span>ইতিহাস</span></h1><p class="page-subtitle">এই ব্রাউজারে সংরক্ষিত সাম্প্রতিক পরীক্ষার ফল এখানে পাবেন।</p></div><button class="outline-button" id="clearHistoryBtn">ইতিহাস মুছুন</button></div><div class="panel history-panel"><div class="panel-heading"><div><h2>সাম্প্রতিক প্রতিবেদন</h2><p>এই ডিভাইসের স্থানীয় স্টোরেজে রাখা হয়েছে</p></div><span class="history-count" id="historyCount">0টি প্রতিবেদন</span></div><div id="historyList"></div><div class="empty-history" id="emptyHistory"><span>◷</span><strong>এখনো কোনো স্ক্যান নেই</strong><p>ড্যাশবোর্ড থেকে ডেমো স্ক্যান বা HTML পরীক্ষা শুরু করুন।</p><button class="primary-button" id="historyStartBtn">পরীক্ষা শুরু করুন →</button></div></div></section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-check">✓</span><span id="toastMessage">সম্পন্ন হয়েছে</span></div>
+  <script src="script.js"></script>
+</body>
+</html>
